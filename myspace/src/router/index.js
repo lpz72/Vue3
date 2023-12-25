@@ -14,29 +14,33 @@ const routes = [
     component: HomeView
   },
   {
-    path: '/login',
+    path: '/login/',
     name: 'login',
     component: LoginView
   },
   {
-    path: '/register',
+    path: '/register/',
     name: 'register',
     component: RegisterView
   },
   {
-    path: '/userlist',
+    path: '/userlist/',
     name: 'userlist',
     component: UserListView
   },
   {
-    path: '/userprofile',
+    path: '/userprofile/',
     name: 'userprofile',
     component: UserProfileView
   },
   {
-    path: '/404',
+    path: '/404/',
     name: '404',
     component: NotFoundView
+  },
+  {
+    path: '/:catchAll(.*)/',  //利用正则表达式来匹配任意不存在地址
+    redirect: '/404/', //然后跳转到404，重定向
   },
 ]
 

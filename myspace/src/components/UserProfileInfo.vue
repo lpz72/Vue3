@@ -3,7 +3,7 @@
   <div class="card">
     <div class="card-body">
       <div class="row">
-        <div class="col-3">
+        <div class="col-4">
           <img
             class="img-fluid"
             src="https://cdn.acwing.com/media/user/profile/photo/139053_lg_6f98970e73.jpg"
@@ -11,7 +11,7 @@
           />
         </div>
         <!--加上img-fluid ,使图片自适应大小-->
-        <div class="col-9">
+        <div class="col-8">
           <div class="username">{{fullname}}</div>
           <div class="fans">粉丝数:{{user.followcount}}</div>
           <!-- 在bootstrap搜索按钮样例,btn-sm是将按钮设置为小 -->
