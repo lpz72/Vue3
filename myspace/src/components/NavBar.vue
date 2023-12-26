@@ -19,16 +19,30 @@
         <li class="nav-item">
           <router-link class="nav-link" :to="{name: 'userlist'}">好友列表</router-link>
         </li>
+        <!--
         <li class="nav-item">
-          <router-link class="nav-link" :to="{name: 'userprofile'}">用户动态</router-link>
+          <router-link class="nav-link" :to="{name: 'userprofile', params:{userId: 2}}">用户动态</router-link>
         </li>
+      -->
       </ul>
-      <ul class="navbar-nav">
+      <!-- 没有登录时 -->
+      <ul class="navbar-nav" v-if="!$store.state.user.is_login"> <!-- 用了store后可以直接调用，不用再父子组件传值 -->
         <li class="nav-item">
           <router-link class="nav-link" :to="{name: 'login'}">登录</router-link>
         </li>
         <li class="nav-item">
           <router-link class="nav-link" :to="{name: 'register'}">注册</router-link>
+        </li>
+      </ul>
+      <!-- 登录时 -->
+      <ul class="navbar-nav" v-else>
+        <li class="nav-item">
+          <!-- 点击后跳转到用户状态 -->
+          <router-link class="nav-link" :to="{name: 'userprofile', params:{userId:$store.state.user.id}}">
+            {{$store.state.user.username}}</router-link>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="cursor: pointer;" @click="logout" >退出</a> <!-- 不用再跳转，改为a，鼠标形状改为小手-->
         </li>
       </ul>
     </div>
@@ -38,8 +52,23 @@
 
 //写js，脚本
 <script>
+import { useStore } from 'vuex';
+
 export default{
     name: "NavBar",
+
+    setup: () =>{
+      const store = useStore();
+     
+      //实现退出功能
+      const logout = () => {
+        store.commit('logout');
+      }
+
+      return{
+        logout,
+      }
+    }
 }
 </script>
 
